@@ -3,6 +3,7 @@ import Board from './COMPONENTS/Board';
 import './Styles/root.scss';
 import calculateWinner from './helper';
 import History from './COMPONENTS/History';
+import StatusMessage from './COMPONENTS/StatusMessage';
 
 const App = () => {
   const [history, setHistory] = useState([
@@ -14,11 +15,6 @@ const App = () => {
   console.log(current);
 
   const winner = calculateWinner(current.board);
-
-  const message = winner
-    ? `The Winner is ${winner}`
-    : `The Next Player is ${current.isNextx ? 'X' : 'O'}`;
-  //  console.log("Borad  mount");
 
   const handelSquareValue = position => {
     if (current.board[position] || winner) {
@@ -51,7 +47,7 @@ const App = () => {
   return (
     <div className="app">
       <h1>Tic Tac Toe ;D</h1>
-      <h2>{message}</h2>
+      <StatusMessage winner={winner} current={current} />
       <Board board={current.board} handelSquareValue={handelSquareValue} />
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
     </div>
