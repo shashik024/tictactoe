@@ -1,12 +1,12 @@
-import React  from 'react';
+import React from 'react';
 import Square from './Square';
 
-
-const Board = ({board ,handelSquareValue})  => {
+const Board = ({ board, handelSquareValue, winingSequence }) => {
   const renderSquare = position => {
-
+    const isWiningSequence = winingSequence.includes(position);
     return (
       <Square
+        isWiningSequence={isWiningSequence}
         value={board[position]}
         onClick={() => {
           handelSquareValue(position);
@@ -34,41 +34,40 @@ const Board = ({board ,handelSquareValue})  => {
       </div>
     </div>
   );
-}
+};
 
 export default Board;
 
+// useState get initial state as argument
 
- // useState get initial state as argument
+// const [board, setBoard] = useState(Array(9).fill(null));
+// const [isNextx, setisNextx] = useState(true);
 
-  // const [board, setBoard] = useState(Array(9).fill(null));
-  // const [isNextx, setisNextx] = useState(true);
+// console.log(board);
 
-  // console.log(board);
+// const handelSquareValue = position => {
+//   if (board[position]) {
+//     return;
+//   }
+//   setBoard(prevState => {
+//     return prevState.map((square, pos) => {
+//       if (pos == position) {
+//         return isNextx ? 'X' : 'O';
+//       }
+//       return square;
+//     });
+//   });
+//   // setBoard(5);
+//   setisNextx(prevState => !prevState);
+// };
 
-  // const handelSquareValue = position => {
-  //   if (board[position]) {
-  //     return;
-  //   }
-  //   setBoard(prevState => {
-  //     return prevState.map((square, pos) => {
-  //       if (pos == position) {
-  //         return isNextx ? 'X' : 'O';
-  //       }
-  //       return square;
-  //     });
-  //   });
-  //   // setBoard(5);
-  //   setisNextx(prevState => !prevState);
-  // };
-
-  // const renderSquare = position => {
-  //   return (
-  //     <Square
-  //       value={board[position]}
-  //       onClick={() => {
-  //         handelSquareValue(position);
-  //       }}
-  //     />
-  //   );
-  // };
+// const renderSquare = position => {
+//   return (
+//     <Square
+//       value={board[position]}
+//       onClick={() => {
+//         handelSquareValue(position);
+//       }}
+//     />
+//   );
+// };
